@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -27,6 +28,8 @@ import com.schemaReader.dal.internal.CodeGroup;
 import com.schemaReader.dal.internal.DataStore;
 import com.schemaReader.dal.internal.Field;
 import com.schemaReader.dal.internal.ItemType;
+import com.schemaReader.dal.internal.Schema;
+import com.schemaReader.dal.internal.SchemaReader;
 
 
 
@@ -122,6 +125,16 @@ public class Test {
 	    
 	     Schema schema = new Schema(entityManager);
 	     
+	     List<Object[]> list =entityManager.createNativeQuery("SELECT  CAST(First_Name AS VARCHAR) a, CAST(Last_Name AS VARCHAR) b FROM Person_")
+	    		.getResultList();
+	     
+	 //    list.forEach( item -> System.out.println(item[1]));
+	     
+	     //.forEach(result[] -> System.out.println(result[0]));
+	    //  System.out.println(entityManager.createNativeQuery("Select First_Name from Person_").getSingleResult()); 
+	      
+	   
+   
 	     
 	     entityManager.close();
 	     emf.close();
@@ -129,57 +142,9 @@ public class Test {
 	}
 }
 
-class Schema {
-	
-	private Map<Integer,CodeGroup> codeGroupsById;;
-	
-		
-	public Schema(EntityManager entityManager)  {
-		
-		SchemaReader schemaReader = new SchemaReader();
-		
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		
-		codeGroupsById = new HashMap<Integer,CodeGroup>();
-		
-		schemaReader.readTable(CodeGroup.class,entityManager,criteriaBuilder)
-	     .forEach(codeGroup -> codeGroupsById.put(codeGroup.getId(), codeGroup));
-		
-		
-		 Map<Integer, ItemType> mapTables = new HashMap<Integer,ItemType>();
-	     
-	     List<ItemType> itemTypes = schemaReader.readTable(ItemType.class,entityManager,criteriaBuilder);
-	     
-	     itemTypes
-	     .stream()
-	     .sorted()
-	     .forEach(itemType -> {
-	        	System.out.println(itemType.getLogicalName());
-	        	mapTables.put(itemType.getId(), itemType);
-	        });
 
-		}
-	
-}
 
-class SchemaReader {
-	
-	// Using Generics to read a table
-	
-	 public <T> List<T> readTable(Class<T> table,
-             EntityManager entityManager,
-             CriteriaBuilder criteriaBuilder) {
 
-		CriteriaQuery<T> critieraQuery = criteriaBuilder.createQuery(table);
-		
-		Root<T> root = critieraQuery.from(table);
-		
-		critieraQuery.select(root);
-		
-		return entityManager.createQuery(critieraQuery).getResultList();
-	}
-	
-}
 		
 		
 	//	Configuration configuration = new Configuration().configure(Test.class.getResource("/hibernate.cfg.xml"));
