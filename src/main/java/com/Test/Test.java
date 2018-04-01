@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
@@ -118,13 +120,46 @@ public class Test {
 	     
 	   //  schemaReader.readTable(Code.class,entityManager,criteriaBuilder).forEach(code ->  System.out.println(code.getExpansion()));
 	    
-	     
+	     Schema schema = new Schema(entityManager);
 	     
 	     
 	     entityManager.close();
 	     emf.close();
 	     
 	}
+}
+
+class Schema {
+	
+	private Map<Integer,CodeGroup> codeGroupsById;;
+	
+		
+	public Schema(EntityManager entityManager)  {
+		
+		SchemaReader schemaReader = new SchemaReader();
+		
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		
+		codeGroupsById = new HashMap<Integer,CodeGroup>();
+		
+		schemaReader.readTable(CodeGroup.class,entityManager,criteriaBuilder)
+	     .forEach(codeGroup -> codeGroupsById.put(codeGroup.getId(), codeGroup));
+		
+		
+		 Map<Integer, ItemType> mapTables = new HashMap<Integer,ItemType>();
+	     
+	     List<ItemType> itemTypes = schemaReader.readTable(ItemType.class,entityManager,criteriaBuilder);
+	     
+	     itemTypes
+	     .stream()
+	     .sorted()
+	     .forEach(itemType -> {
+	        	System.out.println(itemType.getLogicalName());
+	        	mapTables.put(itemType.getId(), itemType);
+	        });
+
+		}
+	
 }
 
 class SchemaReader {
