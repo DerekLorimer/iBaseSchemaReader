@@ -19,12 +19,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.sintelix.dal.CodeGroupType;
-import com.sintelix.dal.internal.Code;
-import com.sintelix.dal.internal.CodeGroup;
-import com.sintelix.dal.internal.DataStore;
-import com.sintelix.dal.internal.Field;
-import com.sintelix.dal.internal.ItemType;
+import com.schemaReader.dal.CodeGroupType;
+import com.schemaReader.dal.internal.Code;
+import com.schemaReader.dal.internal.CodeGroup;
+import com.schemaReader.dal.internal.DataStore;
+import com.schemaReader.dal.internal.Field;
+import com.schemaReader.dal.internal.ItemType;
 
 
 
