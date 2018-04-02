@@ -125,6 +125,13 @@ public class Test {
 	    
 	     Schema schema = new Schema(entityManager);
 	     
+	     System.out.println();
+	     
+	     schema.getEntityTypes()
+	     .stream()
+	     .sorted()
+	     .forEach(entityType -> System.out.println(entityType.getLogicalName()));
+	     
 	     List<Object[]> list =entityManager.createNativeQuery("SELECT  CAST(First_Name AS VARCHAR) a, CAST(Last_Name AS VARCHAR) b FROM Person_")
 	    		.getResultList();
 	     
