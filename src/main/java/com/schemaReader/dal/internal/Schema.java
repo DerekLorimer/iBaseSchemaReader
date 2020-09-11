@@ -105,7 +105,6 @@ public class Schema implements ISchema {
 
 	@Override
 	public List<ILinkType> getLinkTypes() {
-		// TODO Auto-generated method stub
 		return linkTypes;
 	}
 	
