@@ -7,7 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.hibernate.annotations.Proxy;
 
 import com.schemaReader.dal.DefaultValueType;
@@ -47,7 +49,7 @@ public  class Field
   private IItemType mTable;
   private boolean mReadOnly;
   
-  static Logger log = org.apache.log4j.Logger.getLogger( 
+  static Logger log = LogManager.getLogger( 
 		  com.schemaReader.dal.internal.Field.class.getName()); 
   
   

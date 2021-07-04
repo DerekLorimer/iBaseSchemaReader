@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.hibernate.annotations.Proxy;
 
 import com.schemaReader.dal.CodeGroupType;
@@ -27,7 +29,7 @@ public  class CodeGroup
 {
 	
 	/* Get actual class name to be printed on */ 
-static Logger log = org.apache.log4j.Logger.getLogger( 
+static Logger log = LogManager.getLogger( 
 		com.schemaReader.dal.internal.CodeGroup.class.getName());
 			 
   private int mId;
