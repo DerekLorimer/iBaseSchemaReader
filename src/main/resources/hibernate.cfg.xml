@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory >
+  <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+   <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=DCGS_;integratedSecurity=true;</property>
+  <property name="hibernate.connection.defaultNChar">true</property> 
+  
+   <property name="hibernate.show_sql">false</property>
+  
+  
+  <!-- This was added to allow us to read from temporary tables while executing
+  	   outside of a transaction -->
+  <property name="hibernate.connection.release_mode">on_close</property>
+  <mapping class="com.sintelix.dal.internal.Field" />
+   <mapping class="com.sintelix.dal.internal.CodeGroup"/>
+   </session-factory>
+</hibernate-configuration>
