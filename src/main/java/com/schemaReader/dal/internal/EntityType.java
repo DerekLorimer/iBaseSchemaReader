@@ -73,7 +73,6 @@ public class EntityType
    @Transient
 	@Override
 	public String getSemanticTypeId() {
-		// TODO Auto-generated method stub
 		return mSemanticTypeId;
 	}
 

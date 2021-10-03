@@ -66,7 +66,7 @@ public class Code implements ICode {
 	}
 
 	@Column(name = "SortIndex", nullable = true, updatable = false)
-	Integer getSortIndex() {
+	public Integer getSortIndex() {
 		return this.mSortIndex;
 	}
 
@@ -93,7 +93,8 @@ public class Code implements ICode {
 	}
 
 	public Code() {
-		this.mSortedChildCodes = new TreeSet(getSortIndexComparatorInstance());
+		
+		this.mSortedChildCodes = new TreeSet<ICode>(getSortIndexComparatorInstance());
 
 		this.mReadonlySortedChildCodes = Collections.unmodifiableSortedSet(this.mSortedChildCodes);
 	}
@@ -117,14 +118,14 @@ public class Code implements ICode {
 		this.mCodeGroup = value;
 	}
 
-	private static final Comparator<Code> SORT_INDEX_COMPARATOR = new SortIndexComparator();
+	private static final Comparator<ICode> SORT_INDEX_COMPARATOR = new SortIndexComparator();
 
-	static Comparator<Code> getSortIndexComparatorInstance() {
+	static Comparator<ICode> getSortIndexComparatorInstance() {
 		return SORT_INDEX_COMPARATOR;
 	}
 
-	private static final class SortIndexComparator implements Comparator<Code> {
-		public int compare(Code c1, Code c2) {
+	private static final class SortIndexComparator implements Comparator<ICode> {
+		public int compare(ICode c1, ICode c2) {
 
 			Integer i1 = c1.getSortIndex();
 			Integer i2 = c2.getSortIndex();

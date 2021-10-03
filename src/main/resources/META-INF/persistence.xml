@@ -8,7 +8,7 @@
 	<class>com.schemaReader.dal.internal.ItemType</class>
 	    <properties>
         <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
-        <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=DCGS_;integratedSecurity=true;"></property>
+        <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=Sintelix_;integratedSecurity=true;"></property>
         
         <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
          <property name="hibernate.show_sql" value="false" />

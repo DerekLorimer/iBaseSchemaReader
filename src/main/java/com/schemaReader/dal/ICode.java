@@ -17,6 +17,8 @@ public abstract interface ICode
   
   public abstract SortedSet<ICode> getSortedChildCodes();
   
+  Integer getSortIndex();
+  
 
 }
 

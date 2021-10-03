@@ -43,6 +43,8 @@ public class Test {
 		
 		System.out.println("Finished" + CodeGroupType.CODE_LIST.getId());
 		
+	
+		
 		System.out.println("Done" + CodeGroupType.CASE.getId());
 		
 		EnumSet.allOf(CodeGroupType.class)
@@ -83,6 +85,8 @@ public class Test {
 	     .forEach(group -> System.out.println(group.getDescription()));
 	     
 	  //   schemaReader.readTable(ItemType.class,entityManager,criteriaBuilder);
+	     
+	     System.out.println("read table...");
 	     
 	     schemaReader.readTable(ItemType.class,entityManager,criteriaBuilder)
 	     .stream()
@@ -125,7 +129,7 @@ public class Test {
 	    
 	     Schema schema = new Schema(entityManager);
 	     
-	     System.out.println();
+	     System.out.println("getEntityTypes");
 	     
 	     schema.getEntityTypes()
 	     .stream()
